@@ -1,0 +1,19 @@
+{
+  "name": "nodejstut",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/harsha112233/NodeJsTut.git"
+  },
+  "author": "harish",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/harsha112233/NodeJsTut/issues"
+  },
+  "homepage": "https://github.com/harsha112233/NodeJsTut#readme"
+}
