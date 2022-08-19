@@ -1,7 +1,8 @@
-var http=require("http");
-http.createServer((req,res)=>{
-    res.write("welcome to nodeJs");
-    res.end()
-}).listen(8080,()=>{
-    console.log("server started")
-})
+var fs=require("fs");
+// fs.writeFileSync("apple.txt",'this is apple');
+// fs.readFile("apple.txt","utf8",(err,item)=>{
+//     console.log(item)
+// })
+// fs.unlinkSync("apple.txt");
+console.log(__dirname);
+
