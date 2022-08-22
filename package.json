@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/harsha112233/NodeJsTut/issues"
   },
-  "homepage": "https://github.com/harsha112233/NodeJsTut#readme"
+  "homepage": "https://github.com/harsha112233/NodeJsTut#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
 }

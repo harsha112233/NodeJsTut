@@ -1,7 +1,11 @@
-var http=require("http");
-http.createServer((req,res)=>{
-    res.write("welcome to nodeJs");
-    res.end()
-}).listen(8080,()=>{
-    console.log("server started")
+var express =require('express');
+var app=express();
+app.get('/',(req,res)=>{
+    res.send("home page")
 })
+
+app.get('/about',(req,res)=>{
+    res.send("<h1>about page </h1>")
+})
+
+app.listen(8080);
