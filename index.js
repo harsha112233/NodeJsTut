@@ -1,4 +1,5 @@
 var express =require('express');
+var middlewarefun=require("./middleware")
 var app=express();
 
 // types of middleware
@@ -7,18 +8,6 @@ var app=express();
 // -Error handling middleware
 // -Built in middleware
 // -Third party middleware
-
-const middlewarefun=(req,res,next)=>{
- if(!req.query.age){
-    res.send("please provide age")
- }
- else if(req.query.age<18){
-    res.send("you can not access this site")
- }
- else{
-    next()
- }
-}
 
 // app.use(middlewarefun)   // application level middleware
 
