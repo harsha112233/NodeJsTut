@@ -1,23 +1,17 @@
-var express =require('express');
-var middlewarefun=require("./middleware")
-var app=express();
+const mongoose=require("mongoose");
+ mongoose.connect("mongodb://localhost:27017/e-commerse")
+    const productSchema=new mongoose.Schema({
+        name:String,
+        brand:String,
+        price:Number,
+        category:String
+    })
+const saveIndb =async()=>{
+    
+    const productModel=mongoose.model('products',productSchema)
+    let data=new productModel({name:"Oneplus 10t",brand:"oneplus",price:45000,category:"mobile"})
+    let result=await data.save();
+    console.log(result)
+}
 
-// types of middleware
-// -application level middleware
-// -Router level middleware
-// -Error handling middleware
-// -Built in middleware
-// -Third party middleware
-
-// app.use(middlewarefun)   // application level middleware
-
-app.get('/',(req,res)=>{
-    res.send("home page")
-})
-
-app.get('/user',middlewarefun,(req,res)=>{
-    res.send("<h1>about page </h1>")
-})
-
-
-app.listen(8080);
+saveIndb()
