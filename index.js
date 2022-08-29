@@ -9,9 +9,35 @@ const mongoose=require("mongoose");
 const saveIndb =async()=>{
     
     const productModel=mongoose.model('products',productSchema)
-    let data=new productModel({name:"Oneplus 10t",brand:"oneplus",price:45000,category:"mobile"})
+    let data=new productModel({name:"Oneplus",brand:"oneplusMobile",price:45000,category:"mobile"})
     let result=await data.save();
     console.log(result)
 }
 
-saveIndb()
+const updateIndb=async()=>{
+    const product=mongoose.model('products',productSchema)
+    let data =await product.updateOne(
+        {name:"Oneplus"},
+        {
+            $set:{price:49000}
+        }
+    )
+    console.log(data)
+    
+}
+const deleteInDB = async ()=>{
+    const product = mongoose.model('products', productSchema);
+    let data = await product.deleteOne({name:'harish'})
+    console.log(data);
+}
+
+const findInDB = async ()=>{
+    const Product = mongoose.model('products', productSchema);
+    let data = await Product.find({name:'Oneplus'})
+    console.log(data);
+}
+
+// saveIndb()
+// updateIndb()
+// deleteInDB()
+findInDB()
