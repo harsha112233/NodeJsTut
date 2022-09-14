@@ -1,43 +1,60 @@
-const mongoose=require("mongoose");
- mongoose.connect("mongodb://localhost:27017/e-commerse")
-    const productSchema=new mongoose.Schema({
-        name:String,
-        brand:String,
-        price:Number,
-        category:String
-    })
-const saveIndb =async()=>{
-    
-    const productModel=mongoose.model('products',productSchema)
-    let data=new productModel({name:"Oneplus",brand:"oneplusMobile",price:45000,category:"mobile"})
-    let result=await data.save();
-    console.log(result)
-}
+const express=require("express");
+const fs=require('fs');
+const app=express();
+app.use(express.json());
 
-const updateIndb=async()=>{
-    const product=mongoose.model('products',productSchema)
-    let data =await product.updateOne(
-        {name:"Oneplus"},
-        {
-            $set:{price:49000}
+const tours=JSON.parse(fs.readFileSync(`${__dirname}/Data/simple-tours-data.json`));
+
+const getAllToour=(req,res)=>{
+    res.json({
+        status:"success",
+        result:tours.length,
+        data:{
+            tours:tours
         }
-    )
-    console.log(data)
+})
+}
+
+const getTour=(req,res)=>{
+    console.log(req.params)
+    res.json({
+        status:"success",
+       
+})
+}
+
+const createTour=(req,res)=>{
     
-}
-const deleteInDB = async ()=>{
-    const product = mongoose.model('products', productSchema);
-    let data = await product.deleteOne({name:'harish'})
-    console.log(data);
+    const newId=tours[tours.length-1].id+1;
+    const newTour=Object.assign({id:newId},req.body)
+    console.log(Object)
+    tours.push(newTour)
+
+    fs.writeFile(`${__dirname}/Data/simple-tours-data.json`,JSON.stringify(tours),(err)=>{
+       res.status(201).json({
+        status:"success",
+        data:{
+           tour: newTour
+        }
+       })
+    })
 }
 
-const findInDB = async ()=>{
-    const Product = mongoose.model('products', productSchema);
-    let data = await Product.find({name:'Oneplus'})
-    console.log(data);
+const updateTour=(req,res)=>{
+    res.status(201).json({
+        status:"success",
+        data:{
+            tour:"<updated data>"
+        }
+    })
 }
 
-// saveIndb()
-// updateIndb()
-// deleteInDB()
-findInDB()
+app.get('/api/v1/tours',getAllToour)
+app.get('/api/v1/tours/:id',getTour)
+app.post('/api/v1/tours',createTour)
+app.patch('/api/v1/tours/:id',updateTour)
+
+const port=8383
+app.listen(port,()=>{
+    console.log("server started")
+})
