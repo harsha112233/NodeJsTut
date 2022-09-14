@@ -85,10 +85,10 @@ const tourRouter=express.Router();
 const userRouter=express.Router()
 
 tourRouter.route('/').get(getAllToour).post(createTour);
-tourRouter.route('/').get(getTour).patch(updateTour)
+tourRouter.route('/:id').get(getTour).patch(updateTour)
 
-userRouter.route('/').get(getAllUser).post(createUser);
-userRouter.route('/').get(getUser).patch(updateUser)
+app.route('/').get(getAllUser).post(createUser);
+app.route('/:id').get(getUser).patch(updateUser)
 
 
 app.use('/api/v1/tours',tourRouter)
