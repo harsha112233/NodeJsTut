@@ -49,10 +49,43 @@ const updateTour=(req,res)=>{
     })
 }
 
-app.get('/api/v1/tours',getAllToour)
-app.get('/api/v1/tours/:id',getTour)
-app.post('/api/v1/tours',createTour)
-app.patch('/api/v1/tours/:id',updateTour)
+const getAllUser=(req,res)=>{
+    res.json({
+        status:"success",
+        message:"router not yet declare"
+})
+}
+
+const createUser=(req,res)=>{
+    res.json({
+        status:"success",
+        message:"router not yet declare"
+})
+}
+
+const getUser=(req,res)=>{
+    res.json({
+        status:"success",
+        message:"router not yet declare"
+})
+}
+
+const updateUser=(req,res)=>{
+    res.json({
+        status:"success",
+        message:"router not yet declare"
+})
+}
+// app.get('/api/v1/tours',getAllToour)
+// app.get('/api/v1/tours/:id',getTour)
+// app.post('/api/v1/tours',createTour)
+// app.patch('/api/v1/tours/:id',updateTour)
+
+app.route('/api/v1/tours').get(getAllToour).post(createTour);
+app.route('/api/v1/tours/:id').get(getTour).patch(updateTour)
+
+app.route('/api/v1/users').get(getAllUser).post(createUser);
+app.route('/api/v1/users/:id').get(getUser).patch(updateUser)
 
 const port=8383
 app.listen(port,()=>{
