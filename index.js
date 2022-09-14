@@ -81,12 +81,18 @@ const updateUser=(req,res)=>{
 // app.post('/api/v1/tours',createTour)
 // app.patch('/api/v1/tours/:id',updateTour)
 
-app.route('/api/v1/tours').get(getAllToour).post(createTour);
-app.route('/api/v1/tours/:id').get(getTour).patch(updateTour)
+const tourRouter=express.Router();
+const userRouter=express.Router()
 
-app.route('/api/v1/users').get(getAllUser).post(createUser);
-app.route('/api/v1/users/:id').get(getUser).patch(updateUser)
+tourRouter.route('/').get(getAllToour).post(createTour);
+tourRouter.route('/').get(getTour).patch(updateTour)
 
+userRouter.route('/').get(getAllUser).post(createUser);
+userRouter.route('/').get(getUser).patch(updateUser)
+
+
+app.use('/api/v1/tours',tourRouter)
+app.use('/api/v1/users',userRouter)
 const port=8383
 app.listen(port,()=>{
     console.log("server started")
